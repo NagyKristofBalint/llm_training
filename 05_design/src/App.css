@@ -1,0 +1,520 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  line-height: 1.5;
+}
+
+/* Layout */
+.app {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 21px 160px;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  margin-bottom: 52.5px;
+}
+
+.app-title {
+  font-size: 13.2px;
+  font-weight: 400;
+  line-height: 1.59;
+  color: #0a0a0a;
+  margin-bottom: 49px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 31.5px;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+  max-width: 392px;
+}
+
+.search-input {
+  width: 100%;
+  height: 31.5px;
+  padding: 8.4px 35px 8.4px 35px;
+  border: none;
+  border-radius: 6.75px;
+  background-color: #f3f3f5;
+  font-size: 10.7px;
+  font-weight: 400;
+  line-height: 1.37;
+  color: #0a0a0a;
+}
+
+.search-input::placeholder {
+  color: #0a0a0a;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6.25px 14px;
+  border: none;
+  border-radius: 6.75px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11.3px;
+  line-height: 1.55;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #030213;
+  color: #ffffff;
+  height: 31.5px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1a1a2e;
+}
+
+.btn-outline {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 28px;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background-color: #f3f3f5;
+}
+
+.btn-danger {
+  background-color: #d4183d;
+  color: #ffffff;
+  height: 28px;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #b8152e;
+}
+
+/* Product Grid */
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Product Card */
+.product-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12.75px;
+  padding: 0;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+  flex: 0 0 264px;
+  width: 264px;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-card-header {
+  padding: 15px 15px 0;
+}
+
+.product-title {
+  font-size: 13.2px;
+  font-weight: 400;
+  line-height: 1.06;
+  color: #0a0a0a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.product-card-content {
+  padding: 0 15px;
+  margin-top: 40px;
+}
+
+.product-description {
+  font-size: 11.3px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #717182;
+  margin-bottom: 14px;
+  min-height: 54px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.product-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.product-stock {
+  font-size: 11.3px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #717182;
+}
+
+.product-price {
+  font-size: 12.8px;
+  font-weight: 500;
+  line-height: 1.64;
+  color: #030213;
+}
+
+.product-card-actions {
+  display: flex;
+  gap: 7px;
+  padding: 14px;
+  justify-content: space-between;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8.75px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #000000;
+  z-index: 1001;
+}
+
+.modal-close:hover {
+  background-color: #f3f3f5;
+}
+
+/* Product Form */
+.product-form {
+  padding: 22px;
+  width: 388px;
+}
+
+.form-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 0.98;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.02;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px 11px;
+  border: 1px solid transparent;
+  border-radius: 6.75px;
+  background-color: #f3f3f5;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.21;
+  color: #000000;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #030213;
+  background-color: #ffffff;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999999;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 56px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 7px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Product Details Modal */
+.product-details-modal {
+  padding: 22px;
+  width: 444px;
+}
+
+.details-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 0.98;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.details-content {
+  margin-top: 10px;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.48;
+  color: #000000;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.product-description-full {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #717182;
+  margin-bottom: 25px;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.details-separator {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detail-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.46;
+  color: #717182;
+}
+
+.detail-value {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.46;
+  color: #000000;
+}
+
+.detail-value.price {
+  font-size: 12px;
+  font-weight: 500;
+  color: #030213;
+}
+
+/* Delete Confirmation Modal */
+.delete-confirmation {
+  padding: 22px;
+  width: 444px;
+}
+
+.delete-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.53;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.delete-message {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.46;
+  color: #717182;
+  margin-bottom: 25px;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 7px;
+  justify-content: flex-end;
+}
+
+/* Loading states */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #717182;
+}
+
+.error {
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+  color: #dc2626;
+  margin: 20px 0;
+}
+
+/* Empty states */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #717182;
+}
+
+.empty-state h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app {
+    padding: 20px;
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .search-container {
+    max-width: none;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    margin: 20px;
+    width: calc(100vw - 40px);
+  }
+  
+  .product-form,
+  .product-details-modal,
+  .delete-confirmation {
+    width: auto;
+    max-width: none;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

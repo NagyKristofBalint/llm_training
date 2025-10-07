@@ -1,0 +1,7 @@
+[project]
+name = "nk_fancy_pack"
+version = "0.1.0"
+description = "llm training"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []

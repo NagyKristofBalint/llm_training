@@ -1,0 +1,6 @@
+figma token.txt
+
+# Ignore mypy cache folders at any depth
+**/.mypy_cache/
+**/__pycache__/
+Ecosystem

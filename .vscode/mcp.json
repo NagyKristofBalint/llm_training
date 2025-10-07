@@ -1,0 +1,30 @@
+{
+  "servers": {
+    "Framelink Figma MCP": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=${input:figma-api-key}",
+        "--stdio"
+      ],
+      "type": "stdio"
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "type": "stdio"
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "figma-api-key",
+      "description": "Figma API Key",
+      "password": true
+    }
+  ]
+}
