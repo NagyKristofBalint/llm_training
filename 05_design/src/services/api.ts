@@ -1,4 +1,4 @@
-import type { Product, ProductCreate, ProductUpdate } from '../types';
+import type { Product, ProductCreate, ProductUpdate, Cart, CartItemCreate, CartItemUpdate } from '../types';
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -47,6 +47,31 @@ class ApiService {
 
   async deleteProduct(id: number): Promise<{ message: string }> {
     return this.request<{ message: string }>(`/products/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  // Cart methods
+  async getCart(sessionId: string): Promise<Cart> {
+    return this.request<Cart>(`/cart/${sessionId}`);
+  }
+
+  async addToCart(sessionId: string, item: CartItemCreate): Promise<{ message: string; cart_item_id: number }> {
+    return this.request<{ message: string; cart_item_id: number }>(`/cart/${sessionId}/items`, {
+      method: 'POST',
+      body: JSON.stringify(item),
+    });
+  }
+
+  async updateCartItem(sessionId: string, itemId: number, update: CartItemUpdate): Promise<{ message: string }> {
+    return this.request<{ message: string }>(`/cart/${sessionId}/items/${itemId}`, {
+      method: 'PUT',
+      body: JSON.stringify(update),
+    });
+  }
+
+  async removeFromCart(sessionId: string, itemId: number): Promise<{ message: string }> {
+    return this.request<{ message: string }>(`/cart/${sessionId}/items/${itemId}`, {
       method: 'DELETE',
     });
   }
