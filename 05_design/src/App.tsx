@@ -6,8 +6,9 @@ import { ProductForm } from './components/ProductForm';
 import { ProductEditForm } from './components/ProductEditForm';
 import { ProductDetails } from './components/ProductDetails';
 import { DeleteConfirmation } from './components/DeleteConfirmation';
+import { Cart } from './components/Cart';
 import { apiService } from './services/api';
-import type { Product, ProductCreate, ProductUpdate } from './types';
+import type { Product, ProductCreate, ProductUpdate, Cart as CartType } from './types';
 import './App.css';
 
 type ModalType = 'add' | 'edit' | 'view' | 'delete' | null;
@@ -20,11 +21,30 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [cart, setCart] = useState<CartType | null>(null);
+  const [sessionId] = useState(() => {
+    // Generate a session ID for guest users
+    return localStorage.getItem('sessionId') || (() => {
+      const id = Math.random().toString(36).substring(2) + Date.now().toString(36);
+      localStorage.setItem('sessionId', id);
+      return id;
+    })();
+  });
 
-  // Load products on component mount
+  // Load products and cart on component mount
   useEffect(() => {
     loadProducts();
+    loadCart();
   }, []);
+
+  const loadCart = async () => {
+    try {
+      const cartData = await apiService.getCart(sessionId);
+      setCart(cartData);
+    } catch (err) {
+      console.error('Error loading cart:', err);
+    }
+  };
 
   // Filter products based on search term
   useEffect(() => {
@@ -113,6 +133,37 @@ function App() {
     setError(null);
   };
 
+  // Cart functionality
+  const addToCart = async (product: Product) => {
+    try {
+      await apiService.addToCart(sessionId, { product_id: product.id, quantity: 1 });
+      await loadCart(); // Reload cart after adding item
+    } catch (err) {
+      setError('Failed to add item to cart.');
+      console.error('Error adding to cart:', err);
+    }
+  };
+
+  const updateCartItemQuantity = async (itemId: number, quantity: number) => {
+    try {
+      await apiService.updateCartItem(sessionId, itemId, { quantity });
+      await loadCart(); // Reload cart after updating
+    } catch (err) {
+      setError('Failed to update cart item.');
+      console.error('Error updating cart item:', err);
+    }
+  };
+
+  const removeCartItem = async (itemId: number) => {
+    try {
+      await apiService.removeFromCart(sessionId, itemId);
+      await loadCart(); // Reload cart after removing item
+    } catch (err) {
+      setError('Failed to remove item from cart.');
+      console.error('Error removing from cart:', err);
+    }
+  };
+
   return (
     <div className="app">
       <div className="container">
@@ -181,6 +232,7 @@ function App() {
                   onView={() => openModal('view', product)}
                   onEdit={() => openModal('edit', product)}
                   onDelete={() => openModal('delete', product)}
+                  onAddToCart={addToCart}
                 />
               ))}
             </div>
@@ -235,6 +287,15 @@ function App() {
             />
           )}
         </Modal>
+
+        {/* Shopping Cart */}
+        <Cart 
+          items={cart?.items || []}
+          totalItems={cart?.total_items || 0}
+          totalPrice={cart?.total_price || 0}
+          onUpdateQuantity={updateCartItemQuantity}
+          onRemoveItem={removeCartItem}
+        />
       </div>
     </div>
   );

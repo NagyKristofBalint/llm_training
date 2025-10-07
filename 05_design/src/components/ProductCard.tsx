@@ -1,4 +1,4 @@
-import { Eye, Edit, Trash2 } from 'lucide-react';
+import { Eye, Edit, Trash2, Plus } from 'lucide-react';
 import type { Product } from '../types';
 
 interface ProductCardProps {
@@ -6,13 +6,21 @@ interface ProductCardProps {
   onView: (product: Product) => void;
   onEdit: (product: Product) => void;
   onDelete: (product: Product) => void;
+  onAddToCart: (product: Product) => void;
 }
 
-export function ProductCard({ product, onView, onEdit, onDelete }: ProductCardProps) {
+export function ProductCard({ product, onView, onEdit, onDelete, onAddToCart }: ProductCardProps) {
   return (
     <div className="product-card">
       <div className="product-card-header">
         <h4 className="product-title">{product.name}</h4>
+        <button 
+          className="btn btn-add-to-cart"
+          onClick={() => onAddToCart(product)}
+          title="Add to cart"
+        >
+          <Plus size={14} />
+        </button>
       </div>
       
       <div className="product-card-content">
