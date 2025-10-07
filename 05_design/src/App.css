@@ -757,3 +757,22 @@ body {
     font-size: 9px;
   }
 }
+
+/* 
+ * TESTING NOTE FOR CSS:
+ * 
+ * CSS styling is validated indirectly through component tests that verify:
+ * 1. Elements are rendered with correct class names
+ * 2. Interactive elements (buttons, inputs) are accessible
+ * 3. Layout renders correctly in jsdom environment
+ * 4. Responsive behavior can be tested with viewport changes
+ * 
+ * For comprehensive CSS validation, consider:
+ * - Visual regression testing with Percy or Chromatic
+ * - Screenshot comparison tests with Playwright
+ * - CSS linting with stylelint
+ * - Accessibility testing with axe-core
+ * 
+ * The component tests in Cart.test.tsx and ProductCard.test.tsx
+ * implicitly validate that CSS classes are applied correctly.
+ */
